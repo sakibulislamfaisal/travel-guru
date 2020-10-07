@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import "./SignUp.css";
@@ -6,6 +6,8 @@ import { useAuth } from "./useAuth";
 
 const SignUp = () => {
   const { register, handleSubmit, watch, errors } = useForm();
+  const password = useRef({});
+  password.current = watch("password", "");
   const [loggedInUser, setLoggedInUser] = useState(false);
   const auth = useAuth();
   const onSubmit = (data, e) => {
@@ -64,12 +66,12 @@ const SignUp = () => {
                 name="password"
                 ref={register({
                   minLength: {
-                    value: 8,
-                    message: "password must have min length of 8",
+                    value: 6,
+                    message: "password must have min length of 6",
                   },
                   required: {
                     value: true,
-                    message: "password is required",
+                    message: "You must specify a password",
                   },
                   maxLength: {
                     value: 15,
@@ -177,12 +179,12 @@ const SignUp = () => {
                 name="password"
                 ref={register({
                   minLength: {
-                    value: 8,
-                    message: "password must have min length of 8",
+                    value: 6,
+                    message: "password must have min length of 6",
                   },
                   required: {
                     value: true,
-                    message: "password is required",
+                    message: "You must specify a password",
                   },
                   maxLength: {
                     value: 15,
@@ -201,11 +203,12 @@ const SignUp = () => {
                 type="password"
                 name="confirm_password"
                 ref={register({
-                  validate: (value) => value === watch("password"),
                   required: {
                     value: true,
                     message: "confirm password is required",
                   },
+                  validate: (value) =>
+                    value === password.current || "The password do not match",
                 })}
                 className="form-control"
                 placeholder=" Confirm Password"
