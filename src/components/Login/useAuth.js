@@ -48,7 +48,7 @@ const Auth = () => {
 
   //current User find
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         const currUser = user;
         setUser(currUser);
