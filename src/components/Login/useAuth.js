@@ -55,4 +55,15 @@ const Auth = () => {
       }
     });
   }, []);
+
+  //sign in method using firebase
+  const signIn = (email, password) => {
+    return firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((res) => {
+        setUser(res.user);
+      })
+      .catch((err) => setUser({ err: err.message }));
+  };
 };
