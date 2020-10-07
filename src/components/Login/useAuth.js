@@ -82,4 +82,15 @@ const Auth = () => {
       })
       .catch((err) => setUser({ err: err.message }));
   };
+
+  //sign Out method using firebase
+  const signOut = () => {
+    return firebase
+      .auth()
+      .signOut()
+      .then((res) => {
+        setUser(null);
+      })
+      .catch((err) => setUser({ err: err.message }));
+  };
 };
