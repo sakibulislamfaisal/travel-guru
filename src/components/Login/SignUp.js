@@ -62,12 +62,25 @@ const SignUp = () => {
               <input
                 type="password"
                 name="password"
-                ref={register({ required: true, minLength: 6, maxLength: 15 })}
+                ref={register({
+                  minLength: {
+                    value: 8,
+                    message: "password must have min length of 8",
+                  },
+                  required: {
+                    value: true,
+                    message: "password is required",
+                  },
+                  maxLength: {
+                    value: 15,
+                    message: "password must have max length of 15",
+                  },
+                })}
                 className="form-control"
                 placeholder=" Password"
               />
               {errors.password && (
-                <span className="error">Password is required</span>
+                <span className="error">{errors.password.message}</span>
               )}
             </div>
             <div className="form-group">
@@ -126,22 +139,43 @@ const SignUp = () => {
             <div className="form-group">
               <input
                 name="email"
-                ref={register({ required: true })}
+                ref={register({
+                  required: "Enter your e-mail",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                    message: "Enter a valid e-mail address",
+                  },
+                })}
                 className="form-control"
-                placeholder="Username or Email"
+                placeholder="Username or  Email"
               />
-              {errors.email && <span className="error">Email is required</span>}
+              {errors.email && (
+                <span className="error">{errors.email.message}</span>
+              )}
             </div>
             <div className="form-group">
               <input
                 type="password"
                 name="password"
-                ref={register({ required: true })}
+                ref={register({
+                  minLength: {
+                    value: 8,
+                    message: "password must have min length of 8",
+                  },
+                  required: {
+                    value: true,
+                    message: "password is required",
+                  },
+                  maxLength: {
+                    value: 15,
+                    message: "password must have max length of 15",
+                  },
+                })}
                 className="form-control"
                 placeholder=" Password"
               />
               {errors.password && (
-                <span className="error">Password is required</span>
+                <span className="error">{errors.password.message}</span>
               )}
             </div>
             <div className="form-group">
