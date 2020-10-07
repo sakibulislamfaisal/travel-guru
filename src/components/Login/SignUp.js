@@ -116,24 +116,42 @@ const SignUp = () => {
             )}
             <div className="form-group">
               <input
-                name="name"
-                ref={register({ required: true })}
+                name="name1"
+                ref={register({
+                  required: {
+                    value: true,
+                    message: "First Name is required",
+                  },
+                  minLength: {
+                    value: 4,
+                    message: "Name field should have min length of 4",
+                  },
+                })}
                 className="form-control"
                 placeholder="First Name"
               />
-              {errors.name && (
-                <span className="error"> First Name is required</span>
+              {errors.name1 && (
+                <span className="error"> {errors.name1.message}</span>
               )}
             </div>
             <div className="form-group">
               <input
                 name="name"
-                ref={register({ required: true })}
+                ref={register({
+                  required: {
+                    value: true,
+                    message: "Last Name is required",
+                  },
+                  minLength: {
+                    value: 4,
+                    message: "Last Name field should have min length of 4",
+                  },
+                })}
                 className="form-control"
                 placeholder="Last Name"
               />
               {errors.name && (
-                <span className="error"> Last Name is required</span>
+                <span className="error"> {errors.name.message}</span>
               )}
             </div>
             <div className="form-group">
@@ -184,13 +202,16 @@ const SignUp = () => {
                 name="confirm_password"
                 ref={register({
                   validate: (value) => value === watch("password"),
-                  required: true,
+                  required: {
+                    value: true,
+                    message: "confirm password is required",
+                  },
                 })}
                 className="form-control"
                 placeholder=" Confirm Password"
               />
               {errors.confirm_password && (
-                <span className="error">Confirm Password is required</span>
+                <span className="error">{errors.confirm_password.message}</span>
               )}
             </div>
             <div className="form-group">
