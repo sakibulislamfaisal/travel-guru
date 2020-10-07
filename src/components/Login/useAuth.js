@@ -1,26 +1,21 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
+import { Redirect, Route } from "react-router-dom";
 import React from "react";
 import firebaseConfig from "../../firebase.config";
-import { Redirect, Route } from "react-router-dom";
 
 firebase.initializeApp(firebaseConfig);
 
-//create context
 const AuthContext = createContext();
-
-//Context Provider set
 export const AuthProvider = (props) => {
   const auth = Auth();
   return (
     <AuthContext.Provider value={auth}> {props.children} </AuthContext.Provider>
   );
 };
-//then use context provider
 export const useAuth = () => useContext(AuthContext);
 
-//Private Route
 export const PrivateRoute = ({ children, ...rest }) => {
   const auth = useAuth();
   return (
@@ -42,13 +37,12 @@ export const PrivateRoute = ({ children, ...rest }) => {
   );
 };
 
-//work with Auth functionality
 const Auth = () => {
   const [user, setUser] = useState(null);
+  const [success, setSuccess] = useState(false);
 
-  //current User find
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged(function (user) {
       if (user) {
         const currUser = user;
         setUser(currUser);
@@ -56,41 +50,49 @@ const Auth = () => {
     });
   }, []);
 
-  //sign in method using firebase
   const signIn = (email, password) => {
     return firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
         setUser(res.user);
+        setSuccess(true);
+        window.history.back();
       })
-      .catch((err) => setUser({ err: err.message }));
+      .catch((err) => setUser({ error: err.message }));
   };
 
-  //sign out method using firebase
-  const signUp = (name, email, password) => {
+  const signUp = (email, password, name) => {
     return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
-        firebase.auth().currentUser.updateProfile({
-          displayName: name,
-        });
+        firebase
+          .auth()
+          .currentUser.updateProfile({
+            displayName: name,
+          })
+          .then(() => {
+            setUser(res.user);
+            setSuccess(true);
+            window.history.back();
+          });
       })
-      .then((res) => {
-        setUser(res.user);
-      })
-      .catch((err) => setUser({ err: err.message }));
+      .catch((err) => setUser({ error: err.message }));
   };
 
-  //sign Out method using firebase
   const signOut = () => {
     return firebase
       .auth()
       .signOut()
-      .then((res) => {
-        setUser(null);
-      })
-      .catch((err) => setUser({ err: err.message }));
+      .then((res) => setUser(null));
+  };
+  return {
+    success,
+    user,
+    signIn,
+    signUp,
+    signOut,
   };
 };
+export default Auth;
