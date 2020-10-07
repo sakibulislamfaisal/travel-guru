@@ -1,6 +1,6 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import React from "react";
 import firebaseConfig from "../../firebase.config";
 import { Redirect, Route } from "react-router-dom";
@@ -43,4 +43,16 @@ export const PrivateRoute = ({ children, ...rest }) => {
 };
 
 //work with Auth functionality
-const Auth = () => {};
+const Auth = () => {
+  const [user, setUser] = useState(null);
+
+  //current User find
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        const currUser = user;
+        setUser(currUser);
+      }
+    });
+  }, []);
+};
