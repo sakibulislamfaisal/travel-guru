@@ -30,7 +30,17 @@ const SignUp = () => {
             {auth.user != null && (
               <p className="text-danger error">{auth.user.error}</p>
             )}
-
+            {auth.success && (
+              <p
+                style={{
+                  color: "green",
+                  fontSize: "18px",
+                  textAlign: "center",
+                }}
+              >
+                User is LoggedIn Successfully
+              </p>
+            )}
             <div className="form-group">
               <input
                 name="email"
@@ -72,7 +82,17 @@ const SignUp = () => {
             {auth.user != null && (
               <p className="text-danger error">{auth.user.error}</p>
             )}
-            {auth.success && <p style={{ color: "green" }}>User is created</p>}
+            {auth.success && (
+              <p
+                style={{
+                  color: "green",
+                  fontSize: "18px",
+                  textAlign: "center",
+                }}
+              >
+                User is Successfully Created
+              </p>
+            )}
             <div className="form-group">
               <input
                 name="name"
