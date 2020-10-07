@@ -66,4 +66,20 @@ const Auth = () => {
       })
       .catch((err) => setUser({ err: err.message }));
   };
+
+  //sign out method using firebase
+  const signUp = (name, email, password) => {
+    return firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((res) => {
+        firebase.auth().currentUser.updateProfile({
+          displayName: name,
+        });
+      })
+      .then((res) => {
+        setUser(res.user);
+      })
+      .catch((err) => setUser({ err: err.message }));
+  };
 };
