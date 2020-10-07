@@ -44,19 +44,27 @@ const SignUp = () => {
             <div className="form-group">
               <input
                 name="email"
-                ref={register({ required: true })}
+                ref={register({
+                  required: "Enter your e-mail",
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                    message: "Enter a valid e-mail address",
+                  },
+                })}
                 className="form-control"
-                placeholder="Enter Your Email"
+                placeholder="Username or  Email"
               />
-              {errors.email && <span className="error">Email is required</span>}
+              {errors.email && (
+                <span className="error">{errors.email.message}</span>
+              )}
             </div>
             <div className="form-group">
               <input
                 type="password"
                 name="password"
-                ref={register({ required: true })}
+                ref={register({ required: true, minLength: 6, maxLength: 15 })}
                 className="form-control"
-                placeholder="Enter Your Password"
+                placeholder=" Password"
               />
               {errors.password && (
                 <span className="error">Password is required</span>
