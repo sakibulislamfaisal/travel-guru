@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import fakeData from "../fakeData/fakeData";
+import SingleCard from "../SingleCard/SingleCard";
 import "./Home.css";
 
 const Home = () => {
   const [cardData, setCardData] = useState(fakeData);
-  console.log(cardData);
+  console.log(cardData[0].id);
   return (
     <div className="home-section py-5 mt-5 ">
       <div className="darkoverlay">
@@ -21,11 +22,23 @@ const Home = () => {
                 its long natural sandy beach, and it is the most popular place
                 in the world.
               </p>
-              <Link to="/" style={{ textDecoration: "none" }}>
+              <Link
+                to={"/booking/" + cardData[0].id}
+                style={{ textDecoration: "none" }}
+              >
                 <button className="btn btn-warning btn-rounded btn-lg">
                   Booking <FontAwesomeIcon icon={faArrowRight} />
                 </button>
               </Link>
+            </div>
+            <div className="col-md-7 right-side">
+              <div className="card-all">
+                <div className="row">
+                  {cardData.map((item) => (
+                    <SingleCard key={item.id} cardData={item}></SingleCard>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
