@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import "./SignUp.css";
 import { useAuth } from "./useAuth";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faGooglePlusG } from "@fortawesome/free-brands-svg-icons";
 
 const SignUp = () => {
   const { register, handleSubmit, watch, errors } = useForm();
@@ -110,12 +112,6 @@ const SignUp = () => {
                   Create an Account
                 </label>
               </Link>
-            </div>
-            <div className="others py-2">
-              <span className="other-part">
-                <hr className="first-line" /> Or
-                <hr className="first-line" />
-              </span>
             </div>
           </form>
         ) : (
@@ -265,6 +261,35 @@ const SignUp = () => {
           </form>
         )}
       </div>
+      <form onSubmit={handleSubmit()}>
+        <div className="others py-2">
+          <span className="other-part">
+            <hr className="first-line" /> Or
+            <hr className="first-line" />
+          </span>
+          <div className="form-group">
+            <button
+              onClick={() => auth.googleSignIn()}
+              className="btn btn-outline-secondary  text-dark  btn-block google"
+            >
+              <FontAwesomeIcon
+                className="google-icon mt-1"
+                icon={faGooglePlusG}
+              />
+              Google Sign In
+            </button>
+          </div>{" "}
+          <div className="form-group">
+            <button
+              onClick={() => auth.facebookSignIn()}
+              className="btn btn-outline-dark  text-dark  btn-block google"
+            >
+              <FontAwesomeIcon className="google-icon mt-1" icon={faFacebook} />
+              Facebook Sign In
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   );
 };

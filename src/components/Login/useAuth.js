@@ -22,7 +22,7 @@ export const PrivateRoute = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-        auth.user ? (
+        auth.user.email ? (
           children
         ) : (
           <Redirect
@@ -87,12 +87,59 @@ const Auth = () => {
       .signOut()
       .then((res) => setUser(null));
   };
+  //google sign In
+  const googleSignIn = () => {
+    const googleProvider = new firebase.auth.GoogleAuthProvider();
+    return firebase
+      .auth()
+      .signInWithPopup(googleProvider)
+      .then((res) => {
+        setUser(res.user);
+        window.history.back();
+        setSuccess(true);
+      })
+      .catch((err) => setUser({ err: err.message }));
+  };
+
+  //google signOut user
+  const googleSignOut = () => {
+    return firebase
+      .auth()
+      .signOut()
+      .then((res) => setUser(null));
+  };
+
+  //facebook sign in
+  const facebookSignIn = () => {
+    const facebookProvider = new firebase.auth.FacebookAuthProvider();
+    return firebase
+      .auth()
+      .signInWithPopup(facebookProvider)
+      .then((res) => {
+        setUser(res.user);
+        window.history.back();
+        setSuccess(true);
+      })
+      .catch((err) => setUser({ error: err.message }));
+  };
+
+  //facebook logout
+  const facebookLogout = () => {
+    return firebase
+      .auth()
+      .signOut()
+      .then((res) => setUser(null));
+  };
   return {
     success,
     user,
     signIn,
     signUp,
     signOut,
+    googleSignIn,
+    facebookSignIn,
+    googleSignOut,
+    facebookLogout,
   };
 };
 export default Auth;

@@ -48,15 +48,27 @@ h5 {
 .others {
   position: absolute;
   display: inline;
+  margin-left: 60px;
 }
 .first-line {
   position: relative;
-  top: 300;
-  max-width: 400px !important;
+  top: 350;
+  max-width: 380px !important;
   border: 1px solid rgb(100, 52, 52);
   width: 190px;
 }
 .other-part {
   display: flex;
   flex-direction: row;
+}
+.google-icon {
+  color: white;
+  font-size: 22px;
+  margin-right: 10px;
+}
+.form-group .google {
+  font-size: 25px;
+  background-color: #444;
+  border-radius: 40px;
+  color: white !important;
 }

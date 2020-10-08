@@ -10,9 +10,6 @@ function App() {
     <AuthProvider>
       <Router>
         <Switch>
-          <Route exact path="/">
-            <Header></Header>
-          </Route>
           <Route path="/login">
             <SignUp />
           </Route>
