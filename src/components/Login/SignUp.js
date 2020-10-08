@@ -27,9 +27,9 @@ const SignUp = () => {
 
   return (
     <div className="signup ">
-      <div className="container">
+      <div className="container total-form ">
         {loggedInUser ? (
-          <form onSubmit={handleSubmit(onSubmit)} className="total-form">
+          <form onSubmit={handleSubmit(onSubmit)}>
             <h4 className="text-center">Login Panel</h4>
             {auth.user != null && (
               <p className="text-danger error">{auth.user.error}</p>
@@ -44,7 +44,7 @@ const SignUp = () => {
                   textAlign: "center",
                 }}
               >
-                User is LoggedIn Successfully
+                User is Logged In Successfully
               </p>
             )}
             <div className="form-group">
