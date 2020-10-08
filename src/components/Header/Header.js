@@ -72,12 +72,12 @@ const Header = () => {
                   fontSize: "24px",
                 }}
               >
-                Login
+                <button className="btn btn-rounded btn-warning"> Login</button>
               </Link>
             )}
           </li>
           <li className="nav-item">
-            {auth.user ? (
+            {auth.user && (
               <Link
                 className="nav-link text"
                 style={{
@@ -93,19 +93,6 @@ const Header = () => {
                 >
                   SignOut
                 </button>
-              </Link>
-            ) : (
-              <Link
-                to="/login"
-                className="nav-link text"
-                style={{
-                  textDecoration: "none",
-                  color: "black",
-                  padding: "20px",
-                  fontSize: "24px",
-                }}
-              >
-                <button className="btn btn-rounded btn-danger"> SignUp</button>
               </Link>
             )}
           </li>
