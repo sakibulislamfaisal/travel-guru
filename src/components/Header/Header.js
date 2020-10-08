@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../Resources/Logo.png";
+import { useAuth } from "../Login/useAuth";
 import "./Header.css";
 
 const Header = () => {
+  const auth = useAuth();
   return (
     <nav className="navbar navbar-expand navbar-light bg-white fixed-top py-2 ">
       <div className="container header-part">
@@ -45,6 +47,67 @@ const Header = () => {
             >
               Destination
             </Link>
+          </li>
+          <li className="nav-item">
+            {auth.user ? (
+              <Link
+                className="nav-link text"
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  padding: "20px",
+                  fontSize: "24px",
+                }}
+              >
+                {auth.user.displayName}
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="nav-link text"
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  padding: "20px",
+                  fontSize: "24px",
+                }}
+              >
+                Login
+              </Link>
+            )}
+          </li>
+          <li className="nav-item">
+            {auth.user ? (
+              <Link
+                className="nav-link text"
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  padding: "20px",
+                  fontSize: "24px",
+                }}
+              >
+                <button
+                  onClick={() => auth.signOut()}
+                  className="btn btn-rounded btn-danger"
+                >
+                  SignOut
+                </button>
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="nav-link text"
+                style={{
+                  textDecoration: "none",
+                  color: "black",
+                  padding: "20px",
+                  fontSize: "24px",
+                }}
+              >
+                <button className="btn btn-rounded btn-danger"> SignUp</button>
+              </Link>
+            )}
           </li>
         </ul>
       </div>
