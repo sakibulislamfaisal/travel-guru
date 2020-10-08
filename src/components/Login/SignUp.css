@@ -26,6 +26,7 @@ form {
 }
 .error {
   color: red;
+  font-weight: bold;
 }
 * {
   box-sizing: border-box !important;
@@ -43,4 +44,19 @@ form {
 
 h5 {
   margin-bottom: 10px;
+}
+.others {
+  position: absolute;
+  display: inline;
+}
+.first-line {
+  position: relative;
+  top: 300;
+  max-width: 400px !important;
+  border: 1px solid rgb(100, 52, 52);
+  width: 190px;
+}
+.other-part {
+  display: flex;
+  flex-direction: row;
 }

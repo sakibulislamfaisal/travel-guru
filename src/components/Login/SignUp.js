@@ -34,6 +34,8 @@ const SignUp = () => {
             )}
             {auth.success && (
               <p
+                className="alert alert-success"
+                role="alert"
                 style={{
                   color: "green",
                   fontSize: "18px",
@@ -54,7 +56,7 @@ const SignUp = () => {
                   },
                 })}
                 className="form-control"
-                placeholder="Username or  Email"
+                placeholder="Email"
               />
               {errors.email && (
                 <span className="error">{errors.email.message}</span>
@@ -85,18 +87,35 @@ const SignUp = () => {
                 <span className="error">{errors.password.message}</span>
               )}
             </div>
-            <div className="form-group">
+            <div className="form-group py-3">
               <button
                 type="submit"
                 className="btn btn-warning btn-block sign-btn"
               >
-                Sign In
+                Login
               </button>
             </div>
-            <div className="account text-center">
-              <label onClick={() => setLoggedInUser(false)}>
-                Create a new Account
-              </label>
+            <div className="account text-center pb-5">
+              Don’t have an account?{" "}
+              <Link>
+                {" "}
+                <label
+                  onClick={() => setLoggedInUser(false)}
+                  style={{
+                    textDecoration: "underline",
+                    color: "red",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Create an Account
+                </label>
+              </Link>
+            </div>
+            <div className="others py-2">
+              <span className="other-part">
+                <hr className="first-line" /> Or
+                <hr className="first-line" />
+              </span>
             </div>
           </form>
         ) : (
@@ -107,6 +126,8 @@ const SignUp = () => {
             )}
             {auth.success && (
               <p
+                className="alert alert-success"
+                role="alert"
                 style={{
                   color: "green",
                   fontSize: "18px",
@@ -167,7 +188,7 @@ const SignUp = () => {
                   },
                 })}
                 className="form-control"
-                placeholder="Username or  Email"
+                placeholder="Email"
               />
               {errors.email && (
                 <span className="error">{errors.email.message}</span>

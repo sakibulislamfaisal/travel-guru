@@ -56,8 +56,8 @@ const Auth = () => {
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
         setUser(res.user);
-        setSuccess(true);
         window.history.back();
+        setSuccess(true);
       })
       .catch((err) => setUser({ error: err.message }));
   };
@@ -74,8 +74,8 @@ const Auth = () => {
           })
           .then(() => {
             setUser(res.user);
-            setSuccess(true);
             window.history.back();
+            setSuccess(true);
           });
       })
       .catch((err) => setUser({ error: err.message }));
