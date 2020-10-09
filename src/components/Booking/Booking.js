@@ -24,7 +24,7 @@ const Booking = () => {
                     type="text"
                     name="name"
                     id="data"
-                    placeholder="Bangladesh"
+                    placeholder={bookingList.id && bookingList.origin}
                     className="form-control"
                   />
                 </div>
@@ -34,7 +34,7 @@ const Booking = () => {
                     type="text"
                     name="destination"
                     id="data1"
-                    placeholder="Cox's Bazar"
+                    placeholder={bookingList.id && bookingList.title}
                     className="form-control"
                   />
                 </div>
