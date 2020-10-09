@@ -1,5 +1,5 @@
 // AIzaSyBnk53hNDU0t_DzfQ886lqO_ZaXcxYWcqw;
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   GoogleMap,
   LoadScript,
@@ -59,6 +59,21 @@ const MapContainer = () => {
     setSelected(item);
   };
 
+  //Geo Location add
+  const [currentPosition, setCurrentPosition] = useState({});
+
+  const success = (position) => {
+    const currentPosition = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude,
+    };
+    setCurrentPosition(currentPosition);
+  };
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(success);
+  });
+
   return (
     <LoadScript googleMapsApiKey="AIzaSyBnk53hNDU0t_DzfQ886lqO_ZaXcxYWcqw">
       <GoogleMap
@@ -82,6 +97,9 @@ const MapContainer = () => {
           >
             <p>{selected.name}</p>
           </InfoWindow>
+        ))}
+        {...(currentPosition.lat && (
+          <Marker position={currentPosition}></Marker>
         ))}
       />
     </LoadScript>
