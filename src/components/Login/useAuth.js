@@ -1,11 +1,15 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import { createContext, useContext, useEffect, useState } from "react";
-import { Redirect, Route } from "react-router-dom";
+import { Redirect, Route, useHistory } from "react-router-dom";
 import React from "react";
 import firebaseConfig from "../../firebase.config";
 
-firebase.initializeApp(firebaseConfig);
+if (firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig);
+}
+
+//firebase.initializeApp(firebaseConfig);
 
 const AuthContext = createContext();
 export const AuthProvider = (props) => {
@@ -22,7 +26,7 @@ export const PrivateRoute = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-        auth.user.email ? (
+        auth.user ? (
           children
         ) : (
           <Redirect
@@ -40,6 +44,7 @@ export const PrivateRoute = ({ children, ...rest }) => {
 const Auth = () => {
   const [user, setUser] = useState(null);
   const [success, setSuccess] = useState(false);
+  let history = useHistory();
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -56,8 +61,9 @@ const Auth = () => {
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
         setUser(res.user);
-        window.history.back();
         setSuccess(true);
+        resetPassword(email);
+        // history.replace("/");
       })
       .catch((err) => setUser({ error: err.message }));
   };
@@ -74,9 +80,8 @@ const Auth = () => {
           })
           .then(() => {
             setUser(res.user);
-            window.history.back();
             setSuccess(true);
-            console.log(res.user);
+            // window.history.back();
           });
       })
       .catch((err) => setUser({ error: err.message }));
@@ -96,8 +101,8 @@ const Auth = () => {
       .signInWithPopup(googleProvider)
       .then((res) => {
         setUser(res.user);
-        window.history.back();
         setSuccess(true);
+        window.history.back();
       })
       .catch((err) => setUser({ err: err.message }));
   };
@@ -118,8 +123,8 @@ const Auth = () => {
       .signInWithPopup(facebookProvider)
       .then((res) => {
         setUser(res.user);
-        window.history.back();
         setSuccess(true);
+        window.history.back();
       })
       .catch((err) => setUser({ error: err.message }));
   };
@@ -131,6 +136,16 @@ const Auth = () => {
       .signOut()
       .then((res) => setUser(null));
   };
+
+  //reset password
+  const resetPassword = (email) => {
+    return firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        return true;
+      });
+  };
   return {
     success,
     user,
@@ -141,6 +156,7 @@ const Auth = () => {
     facebookSignIn,
     googleSignOut,
     facebookLogout,
+    resetPassword,
   };
 };
 export default Auth;

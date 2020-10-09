@@ -1,12 +1,13 @@
 import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./SignUp.css";
 import { useAuth } from "./useAuth";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faGooglePlusG } from "@fortawesome/free-brands-svg-icons";
 
 const SignUp = () => {
+  let history = useHistory();
   const { register, handleSubmit, watch, errors } = useForm();
   const password = useRef({});
   password.current = watch("password", "");
@@ -17,6 +18,7 @@ const SignUp = () => {
     if (loggedInUser === true) {
       if (data.email && data.password) {
         auth.signIn(data.email, data.password);
+        history.replace("/");
       }
     } else {
       if (
@@ -27,12 +29,13 @@ const SignUp = () => {
         data.confirm_password
       ) {
         auth.signUp(data.email, data.confirm_password, data.fname, data.lname);
+        history.replace("/");
       }
     }
   };
 
   return (
-    <div className="signup ">
+    <div className="signup py-5 ">
       <div className="container total-form ">
         {loggedInUser ? (
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -99,17 +102,20 @@ const SignUp = () => {
               <input type="checkbox" name="checkbox" />
               {"  "}
               Remember me
-              <Link
-                style={{
-                  textDecoration: "underline",
-                  marginLeft: "130px",
-                  color: "orange",
-                  fontWeight: "bold",
-                  fontSize: "17px",
-                }}
-              >
-                Forget Password
-              </Link>
+              {auth.user ? (
+                <Link
+                  onClick={() => auth.resetPassword(auth.user.email)}
+                  style={{
+                    textDecoration: "underline",
+                    marginLeft: "130px",
+                    color: "orange",
+                    fontWeight: "bold",
+                    fontSize: "17px",
+                  }}
+                >
+                  Forget Password
+                </Link>
+              ) : null}
             </div>
             <div className="form-group py-3">
               <button
