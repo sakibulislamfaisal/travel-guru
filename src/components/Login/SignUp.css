@@ -35,7 +35,6 @@ form {
 .signup .form-control {
   border: none;
   padding: 15px !important;
-  color: black;
   border-bottom: 1px solid gray;
   border-radius: 0px;
   font-weight: 400;
@@ -62,13 +61,13 @@ h5 {
   flex-direction: row;
 }
 .google-icon {
-  color: white;
+  color: black;
   font-size: 22px;
   margin-right: 10px;
 }
 .form-group .google {
-  font-size: 25px;
-  background-color: #444;
+  font-size: 18px;
+  background-color: white;
   border-radius: 40px;
-  color: white !important;
+  color: black !important;
 }

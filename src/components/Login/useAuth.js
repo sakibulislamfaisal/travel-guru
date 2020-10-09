@@ -62,7 +62,7 @@ const Auth = () => {
       .catch((err) => setUser({ error: err.message }));
   };
 
-  const signUp = (email, password, name) => {
+  const signUp = (email, password, fname, lname) => {
     return firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -70,12 +70,13 @@ const Auth = () => {
         firebase
           .auth()
           .currentUser.updateProfile({
-            displayName: name,
+            displayName: `${fname} ${lname}`,
           })
           .then(() => {
             setUser(res.user);
             window.history.back();
             setSuccess(true);
+            console.log(res.user);
           });
       })
       .catch((err) => setUser({ error: err.message }));

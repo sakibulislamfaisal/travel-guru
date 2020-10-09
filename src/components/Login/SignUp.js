@@ -19,8 +19,14 @@ const SignUp = () => {
         auth.signIn(data.email, data.password);
       }
     } else {
-      if (data.name && data.email && data.password && data.confirm_password) {
-        auth.signUp(data.email, data.confirm_password, data.name);
+      if (
+        data.fname &&
+        data.lname &&
+        data.email &&
+        data.password &&
+        data.confirm_password
+      ) {
+        auth.signUp(data.email, data.confirm_password, data.fname, data.lname);
       }
     }
   };
@@ -89,6 +95,22 @@ const SignUp = () => {
                 <span className="error">{errors.password.message}</span>
               )}
             </div>
+            <div className="form-group py-2">
+              <input type="checkbox" name="checkbox" />
+              {"  "}
+              Remember me
+              <Link
+                style={{
+                  textDecoration: "underline",
+                  marginLeft: "130px",
+                  color: "orange",
+                  fontWeight: "bold",
+                  fontSize: "17px",
+                }}
+              >
+                Forget Password
+              </Link>
+            </div>
             <div className="form-group py-3">
               <button
                 type="submit"
@@ -135,7 +157,7 @@ const SignUp = () => {
             )}
             <div className="form-group">
               <input
-                name="name1"
+                name="fname"
                 ref={register({
                   required: {
                     value: true,
@@ -155,7 +177,7 @@ const SignUp = () => {
             </div>
             <div className="form-group">
               <input
-                name="name"
+                name="lname"
                 ref={register({
                   required: {
                     value: true,
@@ -270,22 +292,22 @@ const SignUp = () => {
           <div className="form-group">
             <button
               onClick={() => auth.googleSignIn()}
-              className="btn btn-outline-secondary  text-dark  btn-block google"
+              className="btn btn-success  btn-block google"
             >
               <FontAwesomeIcon
                 className="google-icon mt-1"
                 icon={faGooglePlusG}
               />
-              Google Sign In
+              Continue With Google
             </button>
           </div>{" "}
           <div className="form-group">
             <button
               onClick={() => auth.facebookSignIn()}
-              className="btn btn-outline-dark  text-dark  btn-block google"
+              className="btn btn-primary  btn-block google"
             >
               <FontAwesomeIcon className="google-icon mt-1" icon={faFacebook} />
-              Facebook Sign In
+              Continue With Facebook
             </button>
           </div>
         </div>
