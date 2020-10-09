@@ -10,7 +10,7 @@ const homeData = [
     img: "https://i.ibb.co/VmxzVDr/Sajek.png",
   },
   {
-    title: "Shreemangal",
+    title: "Shremongal",
     subtitle:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi, ullam excepturi voluptatum iure quae est delectus ipsum? ",
     description:
