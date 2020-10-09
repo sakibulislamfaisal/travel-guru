@@ -6,6 +6,7 @@ import SignUp from "./components/Login/SignUp";
 import Header from "./components/Header/Header";
 import NotFound from "./components/NotFound/NotFound";
 import Home from "./components/Home/Home";
+import Booking from "./components/Booking/Booking";
 
 function App() {
   return (
@@ -15,6 +16,10 @@ function App() {
           <Route exact path="/">
             <Header />
             <Home />
+          </Route>
+          <Route path="/booking/:id">
+            <Header />
+            <Booking></Booking>
           </Route>
           <Route path="/login">
             <Header />

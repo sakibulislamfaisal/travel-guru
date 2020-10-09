@@ -8,7 +8,7 @@ const SingleCard = (props) => {
     <div className="col-md-4 py-5 mt-5 card-single">
       <Link
         className="card-all-hover"
-        to={"/booking/" + id}
+        to={`/booking/${id}`}
         style={{ textDecoration: "none", color: "white" }}
       >
         {" "}

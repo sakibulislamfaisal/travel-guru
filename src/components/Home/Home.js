@@ -2,19 +2,20 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import fakeData from "../fakeData/fakeData";
+import homeData from "../fakeData/homeData";
+
 import SingleCard from "../SingleCard/SingleCard";
 import "./Home.css";
 
 const Home = () => {
-  const [cardData, setCardData] = useState(fakeData);
+  const [cardData, setCardData] = useState(homeData);
   console.log(cardData[0].id);
   return (
     <div className="home-section py-5 mt-5 ">
       <div className="darkoverlay">
         <div className="container">
           <div className="row">
-            <div className="col-md-5 left-side">
+            <div className="col-md-5">
               <h1 className="home-title">Cox's bazar</h1>
               <p className="home-subtitle">
                 Cox's Bazar is a city, fishing port, tourism centre and district
