@@ -4,7 +4,6 @@
 
 A travel booking application. It 's a little bit project and tried to explore and implement hooks, react-router, context-API, firebase authentication, and hosting.
 
-[Live Website] (travel-guru-4404c.web.app)
 
 ### Features
 
