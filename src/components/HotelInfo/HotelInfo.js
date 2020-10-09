@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import hotelInfo from "../fakeData/hotelInfo";
+import MapContainer from "../GoogleMap/MapContainer";
 import HotelInfoDetail from "../HotelInfoDetail/HotelInfoDetail";
 import "./HotelInfo.css";
 
-const HotelInfo = () => {
+const HotelInfo = (props) => {
   const [hotelData, setHotelData] = useState(hotelInfo);
   console.log(hotelData);
   return (
@@ -19,7 +20,9 @@ const HotelInfo = () => {
               <HotelInfoDetail hotelInfo={item} key={item.id}></HotelInfoDetail>
             ))}
           </div>
-          <div className="col-md-5"></div>
+          <div className="col-md-5">
+            <MapContainer></MapContainer>
+          </div>
         </div>
       </div>
     </div>

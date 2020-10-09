@@ -25,7 +25,7 @@ const Booking = () => {
                     name="name"
                     id="data"
                     placeholder={bookingList.id && bookingList.origin}
-                    className="form-control"
+                    className="form-control book-input"
                   />
                 </div>
                 <div className="form-group ">
@@ -35,7 +35,7 @@ const Booking = () => {
                     name="destination"
                     id="data1"
                     placeholder={bookingList.id && bookingList.title}
-                    className="form-control"
+                    className="form-control book-input"
                   />
                 </div>
                 <div className="form-group row booking-date ">
@@ -45,7 +45,7 @@ const Booking = () => {
                       type="date"
                       name="from"
                       id="data2"
-                      className="form-control date-control"
+                      className="form-control date-control "
                     />
                   </div>
                   <div className="col-md-6  book-left">

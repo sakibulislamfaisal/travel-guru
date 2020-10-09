@@ -26,7 +26,7 @@ const HotelInfoDetail = (props) => {
           <h6 className="hotel-p">{features[1]}</h6>
           <p className="hotel-p">
             {ratings} ({totalRating} )<strong className="ml-3">{price}</strong>
-            <del className="ml-3">$ 99 discount</del>
+            <del className="ml-3">$ 59 discount</del>
           </p>
         </div>
       </div>
