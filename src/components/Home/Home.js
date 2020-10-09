@@ -15,7 +15,7 @@ const Home = () => {
       <div className="darkoverlay">
         <div className="container">
           <div className="row">
-            <div className="col-md-5">
+            <div className="col-md-5  left-side">
               <h1 className="home-title">Cox's bazar</h1>
               <p className="home-subtitle">
                 Cox's Bazar is a city, fishing port, tourism centre and district

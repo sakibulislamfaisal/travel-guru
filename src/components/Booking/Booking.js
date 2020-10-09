@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 import homeData from "../fakeData/homeData";
 import "./Booking.css";
@@ -62,7 +62,7 @@ const Booking = () => {
                   to="/destination"
                   style={{
                     textDecoration: "none",
-                    maxWidth: "480px",
+                    maxWidth: "464px",
                     boxSizing: "border-box",
                     marginLeft: "25px",
                     display: "block",
