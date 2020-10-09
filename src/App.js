@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { AuthProvider } from "./components/Login/useAuth";
+import { AuthProvider, PrivateRoute } from "./components/Login/useAuth";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import SignUp from "./components/Login/SignUp";
 import Header from "./components/Header/Header";
@@ -22,10 +22,10 @@ function App() {
             <Header />
             <Booking></Booking>
           </Route>
-          <Route path="/destination">
+          <PrivateRoute path="/destination">
             <Header />
             <HotelInfo />
-          </Route>
+          </PrivateRoute>
           <Route path="/login">
             <Header />
             <SignUp />

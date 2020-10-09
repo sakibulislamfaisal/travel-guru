@@ -45,7 +45,7 @@ const Booking = () => {
                       type="date"
                       name="from"
                       id="data2"
-                      className="form-control date-control "
+                      className="form-control  "
                     />
                   </div>
                   <div className="col-md-6  book-left">

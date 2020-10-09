@@ -74,6 +74,14 @@ const MapContainer = () => {
     navigator.geolocation.getCurrentPosition(success);
   });
 
+  //Draggable marker
+
+  const onMarkerDragEnd = (e) => {
+    const lat = e.latLng.lat();
+    const lng = e.latLng.lng();
+    setCurrentPosition({ lat, lng });
+  };
+
   return (
     <LoadScript googleMapsApiKey="AIzaSyBnk53hNDU0t_DzfQ886lqO_ZaXcxYWcqw">
       <GoogleMap
@@ -101,6 +109,13 @@ const MapContainer = () => {
         {...(currentPosition.lat && (
           <Marker position={currentPosition}></Marker>
         ))}
+        {...(currentPosition.lat ? (
+          <Marker
+            position={currentPosition}
+            onDragEnd={(e) => onMarkerDragEnd(e)}
+            draggable={true}
+          />
+        ) : null)}
       />
     </LoadScript>
   );
