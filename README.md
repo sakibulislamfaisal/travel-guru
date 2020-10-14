@@ -9,7 +9,7 @@ A travel booking application. It 's a little bit project and tried to explore an
 
 - Basic Card With Information
 - Sign Up for Booking
-- =Google Map API
+- Google Map API
 
 ### Front-end Technology :
 
